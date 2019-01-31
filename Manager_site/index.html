@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>備品管理</title>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="switch.css">
+    <!--<style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>-->
+  </head>
+  <body>
+    <h1>備品管理</h1>
+    <div id="app">
+        <button  v-on:click="filter_data(1)" class="btn btn-primary">ソート</button>
+        <button  v-on:click="filter_data(0)" class="btn btn-primary">全て表示</button>
+        <button  v-on:click="created()" class="btn btn-primary">Excel出力</button>
+        <a hidden href="./Order_data.xlsx" download="Order_data.xlsx" id="download_excel">ダウンロード</a>
+        <!--ul -->
+          <table class="table text-nowrap">
+            <thead class="thead-dark">
+              <th>#</th>
+              <th scope="col">注文するか</th>
+              <th scope="col">製品名</th>
+              <th scope="col">型番</th>
+              <th scope="col">URL</th>
+              <th scope="col">個数</th>
+              <th scope="col">記入日</th>
+              <th scope="col">備考</th>
+            </thead>
+            <tr v-for="(order,number) in orders">
+              <th scope="row">{{number}}</th>
+              <td><label class="switch"><input type="checkbox" v-model="order.Now_Order" v-on:click="change_order_now(order.id)"><span class="slider round"></span></label></td>
+              <td>{{ order.Part_Name }}</td>
+              <td>{{ order.Model_Number }} </td>
+              <td><a v-bind:href="order.URL">This order link</a></td>
+              <td>{{ order.Order_Quantity }}</td>
+              <td>{{ get_date(order.Entry_Date) }}</td>
+              <td>{{ order.Note }}</td>
+            </tr>
+      </table>
+        <!--/ul -->
+        <!--<button v-on:click="get_data">Get Data</button>-->
+    </div>
+
+    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>
