@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hello</title>
+  <meta charset="UTF-8">
+</head>
+
+<body onload="initial();">
+    <h1>Vue.js</h1>
+    <div id="app">
+        <ul>
+          <li v-for="item in items">
+            <label>
+              <input type="checkbox" v-model="item.isChecked"> {{ item.title }}
+            </label>
+          </li>
+        </ul>
+    <button v-on:click="get_data">Get Data</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
