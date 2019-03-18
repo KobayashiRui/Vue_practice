@@ -41,8 +41,10 @@
               <th scope="col">型番</th>
               <th scope="col">URL</th>
               <th scope="col">個数</th>
-              <th scope="col">記入日</th>
               <th scope="col">備考</th>
+              <th scope="col">記入日</th>
+              <th scope="col">注文日</th>
+              <th scope="col">受取日</th>
             </thead>
             <tr v-for="(order,number) in orders">
               <th scope="row">{{number}}</th>
@@ -51,8 +53,10 @@
               <td>{{ order.Model_Number }} </td>
               <td><a v-bind:href="order.URL">This order link</a></td>
               <td>{{ order.Order_Quantity }}</td>
-              <td>{{ get_date(order.Entry_Date) }}</td>
               <td>{{ order.Note }}</td>
+              <td>{{ get_date(order.Entry_Date) }}</td>
+              <td>{{ order.Order_Date }}</td>
+              <td>{{ order.Pickup_Date }}</td>
             </tr>
       </table>
         <!--/ul -->
