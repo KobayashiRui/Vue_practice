@@ -1,0 +1,9 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="fruits-component">
+    <!-- v-forで親のfruitsItems内のオブジェクトを渡している :fruits-item(v-bind)にてデータを渡す-->
+    <ol>
+        <fruits-item-name v-for="fruit in fruitsItems" :key="fruit.name":fruits-item="fruit"></fruits-item-name>
+    </ol>
+</div>
+<script src="app.js"></script>
