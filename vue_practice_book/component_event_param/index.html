@@ -1,0 +1,13 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+    <event-buttons
+        @event-one="onEventOne"
+        @event-two="onEventTwo"
+        @event-three="onEventThree"
+    ></event-buttons>
+   <div v-for="argument in arguments">
+       {{argument}}
+    </div> 
+</div>
+
+<script src="app.js"></script>
