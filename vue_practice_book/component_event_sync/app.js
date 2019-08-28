@@ -8,7 +8,8 @@ Vue.component('input-form',{
     },
     methods:{
         input_data:function(event){
-           return this.$emit("update:text_data",event.target.value) 
+            //イベントの発行 update:text_data
+            return this.$emit("update:text_data",event.target.value) 
         }
     }
 })
